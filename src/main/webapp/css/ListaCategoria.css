@@ -1,0 +1,29 @@
+.listaCategoria{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    text-align: center;
+    column-gap: 0px;
+    row-gap: 30px;
+
+}
+.listaCategoria a{
+    text-align: center;
+    text-decoration: none;
+}
+
+
+
+
+@media screen and (max-width: 862px) {/*se la larghezza della schermo e' minore di 480px*/
+    .listaCategoria{
+        grid-template-columns: auto auto;
+
+    }
+}
+@media screen and (max-width: 672px) {/*se la larghezza della schermo e' minore di 480px*/
+    .listaCategoria{
+        grid-template-columns: auto;
+
+    }
+}

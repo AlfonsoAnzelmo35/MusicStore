@@ -1,0 +1,124 @@
+
+.contenitore-carrello {
+    width:70%;
+}
+.contenitore-carrello table td, .contenitore-carrello table th{
+    font-size: 18px;
+    text-align:center;
+    padding-right:40px;
+
+}
+.contenitore-carrello table{
+    padding:20px;
+}
+.contenitore-carrello table tr{
+    border-bottom:1px solid red;
+
+}
+
+.immagineCarrello{
+    margin-right:20px;
+}
+.nomeImmagineCarrello{
+    width:40%;
+}
+.deleteItemCarrello span{
+    color:red;
+    font-size:40px;
+}
+
+.prosegui{
+    position:relative;
+    top:-30px;
+    text-align:right;
+    margin-bottom:20px;
+}
+
+.prosegui h2{
+    margin-top:0;
+    text-align:right;
+}
+.prosegui a{
+    padding:10px;
+    font-weight:bold;
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    background:#EAAA45;
+}
+
+
+.contenitore-carrello {
+    width:70%;
+}
+.contenitore-carrello table td, .contenitore-carrello table th{
+    font-size: 18px;
+    text-align:center;
+    padding-right:40px;
+}
+.contenitore-carrello table tr{
+    border-bottom:1px solid red;
+
+}
+
+.immagineCarrello{
+    margin-right:20px;
+}
+.nomeImmagineCarrello{
+    width:40%;
+}
+.deleteItemCarrello span{
+    color:red;
+    font-size:40px;
+}
+
+.prosegui{
+    position:relative;
+    top:-30px;
+    text-align:right;
+    margin-bottom:20px;
+}
+
+.prosegui h2{
+    margin-top:0;
+    text-align:right;
+}
+.prosegui a{
+    padding:10px;
+    font-weight:bold;
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    background:#EAAA45;
+}
+
+@media screen and (max-width: 800px) {
+    .contenitore-carrello ,.contenitore-carrello table {
+        width:100%;
+    }
+    .contenitore-carrello table th, .totaleCarrello{
+        display:none;
+    }
+
+    .totaleCarrello{
+        text-align:left;
+        width:40%;
+        padding:20px;
+    }
+    .contenitore-carrello table td img{
+        width:100px;
+        height:100px;
+    }
+    .contenitore-carrello table td{
+        font-size: 18px;
+        text-align:center;
+        padding:0;
+
+    }
+    .quantitaCarrello{
+        width:10px;
+    }
+    .prezzoCarrello{
+        display:none;
+    }
+}

@@ -1,0 +1,10 @@
+.contenitore-flex{
+    display: flex;
+}
+
+
+@media screen and (max-width: 900px) {/*se la larghezza della schermo e' minore di 480px*/
+    .contenitore-flex{
+        display:block;
+    }
+}
