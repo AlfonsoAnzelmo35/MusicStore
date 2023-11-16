@@ -1,0 +1,33 @@
+.contenitore-ordine{
+    flex-grow:1;
+}
+.ordine{
+
+    margin:20px 0px;
+    border:1px solid rgb(0,0,0,0.2);
+    border-radius:20px;
+}
+.info-ordini{
+    padding:20px;
+    border:unset;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    background:#eae8e8;
+}
+.info-ordini div:not(.info-ordini div:last-child){
+    float:left;
+    margin-right:40px;
+}
+
+.info-ordini div span{
+    margin-left: 20px;
+}
+.ordine-strumento {
+    padding:0px 20px;
+}
+.ordine-strumento span{
+    position:relative;
+    bottom:66px;
+    left:40px;
+}
+

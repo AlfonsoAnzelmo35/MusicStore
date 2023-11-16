@@ -126,11 +126,13 @@ ul.sottomenu-sottocategoria{
     width:100%;
     left:0;
 }
-#accedi-registrati,#totaleCarrello{
+#accedi-registrati,#totaleCarrello,#area-utente-span{
     font-size: 20px;
     position:relative;top:0px;
     margin:0px;
 }
+
+
 ul.sottomenu-sottocategoria li{
     padding:20px;
     float:left;

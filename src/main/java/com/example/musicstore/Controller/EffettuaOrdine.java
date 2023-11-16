@@ -1,6 +1,6 @@
 package com.example.musicstore.Controller;
 
-import com.example.musicstore.Model.Carrello;
+import com.example.musicstore.Model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @WebServlet("/EffettuaOrdine")
@@ -18,42 +20,42 @@ public class EffettuaOrdine extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Integer id = Integer.parseInt(req.getParameter("idStrumento")) ;
-        Integer quantita = Integer.parseInt(req.getParameter("list_quantita")) ;
+        HttpSession session = req.getSession(false) ;
+        if(session == null){
+            req.getSession(true) ;
+        }
 
-        HttpSession session ;
-        List<Integer> strumentoList;
+        if(!(boolean)session.getAttribute("logged")){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp") ;
+            requestDispatcher.forward(req, resp);
+        }
+
         Carrello carrello;
-        try{
-            session = req.getSession(false) ;
-        }catch (Exception e){
-            session = req.getSession(true) ;
-        }
-
-        strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
-        carrello =  (Carrello) session.getAttribute("carrello");
-
-        if(strumentoList == null) {
-            session.setAttribute("listaStrumenti", new ArrayList<Integer>());
-            strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
-        }
+        carrello =  (Carrello) session.getAttribute("carrello") ;
         if(carrello == null) {
             session.setAttribute("carrello", new Carrello());
             carrello = (Carrello) session.getAttribute("carrello");
         }
 
-        //per il momento tieni solo una lista di interi(gli id dei strumenti) poi solo quando l'utente
-        //vuole effettivamente guaradare il carrello allora effettuiamo le query
-        strumentoList.add(id);
-        carrello.getQuantita().add(quantita) ;
+        UtenteDAO utenteDAO = new UtenteDAO();
+        OrdiniDAO ordiniDAO = new OrdiniDAO() ;
 
-        String addr= "" ;
-        if(req.getParameter("nomePagina") != null)
-            addr = "strumentoPerCategoria.jsp";
-        else addr = "home.jsp";
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(addr) ;
+
+        String utenteEmail = (String)session.getAttribute("utenteEmail") ;
+        int utenteCF = (int)session.getAttribute("utenteCF") ;
+
+        //per ogni ordine viene salvata una tupla
+        for(Strumento strumento: carrello.getStrumenti()) {
+            Ordini ordine = new Ordini(utenteCF, strumento.getIdStrumento(), carrello.getPrezzoPerQuantitaStrumento(strumento.getIdStrumento()),
+                    strumento.getOfferta(), carrello.getQuantitaStrumento(strumento.getIdStrumento()), new GregorianCalendar());
+
+            ordiniDAO.doSave(ordine);
+        }
+
+        req.setAttribute("ordineEffetuato",true); //solo per la notifica
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home.jsp") ;
         requestDispatcher.forward(req, resp);
-    }
+   }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

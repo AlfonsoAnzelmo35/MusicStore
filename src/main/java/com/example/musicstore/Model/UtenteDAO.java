@@ -75,7 +75,7 @@ public class UtenteDAO {
             throw new RuntimeException(e);
         }
     }
-    public boolean doRetrieveByEmail(String email) {
+    public Utente doRetrieveByEmail(String email) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT CF, Nome, Cognome, Ruolo, DataNascita, via, citta, nazione" +
@@ -85,8 +85,26 @@ public class UtenteDAO {
             ps.setString(1, email);
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) return true;
-            return false;
+
+            if(rs.next()) {
+                rs.getInt(1);
+                Utente utente = new Utente();
+                utente.setCF(rs.getInt(1));
+                utente.setNome(rs.getString(2));
+                utente.setCognome(rs.getString(3));
+                utente.setRuolo(rs.getString(4));
+
+                Date data_Nascita = rs.getDate(5);
+                GregorianCalendar dataNascita = new GregorianCalendar();
+                dataNascita.setTime(data_Nascita);
+                utente.setDataNascita(dataNascita);
+
+                utente.setVia(rs.getString(6));
+                utente.setCitta(rs.getString(7));
+                utente.setNazione(rs.getString(8));
+                return utente ;
+            }
+            return null;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

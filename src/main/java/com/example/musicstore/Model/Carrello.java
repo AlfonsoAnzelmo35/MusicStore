@@ -1,47 +1,68 @@
 package com.example.musicstore.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Carrello {
 
-    public Carrello() {
-        this.quantita = new ArrayList<>();
-        this.strumenti = new ArrayList<>();
+    public Carrello(){
+        this.strumentoQuantita = new HashMap<>();
+    }
+    public void aggiungiStrumento(Strumento strumento, int quantita) {
+        this.strumentoQuantita.put(strumento,quantita);
     }
 
-    public Carrello(List<Integer> quantita, List<Strumento> strumentiIds) {
-        this.quantita = quantita;
-        this.strumenti = strumentiIds;
+    public float getPrezzoPerQuantitaStrumento(Integer id){
+
+        Optional<Strumento> strumentoOPT = getStrumento(id);
+
+        if(strumentoOPT.isPresent())
+            return strumentoQuantita.get(strumentoOPT.get()) * strumentoOPT.get().getPrezzo();//il primo get si riferisce alla mappa, il secondo si riferisce all'optional strumento
+
+        return 0;
+
+    }
+    public Integer getQuantitaStrumento(Integer id){
+        Optional<Strumento> strumentoOPT = getStrumento(id);
+
+        if(strumentoOPT.isPresent())
+            return strumentoQuantita.get(strumentoOPT.get());//il primo get si riferisce alla mappa, il secondo si riferisce all'optional strumento
+
+        return null;
     }
 
-    public List<Integer> getQuantita() {
-        return quantita;
+    public Optional<Strumento> getStrumento(Integer id){
+        Optional<Strumento> strumentoOPT = strumentoQuantita.keySet()
+                .stream()
+                .filter(strum -> strum.getIdStrumento() == id)
+                .findFirst();
+        return strumentoOPT;
     }
 
-    public void setQuantita(List<Integer> quantita) {
-        this.quantita = quantita;
-    }
-
-    public List<Strumento> getStrumenti() {
-        return strumenti;
-    }
-
-    public void setStrumenti(List<Strumento> strumenti) {
-        this.strumenti = strumenti;
-    }
-    public float getPrezzoPerQuantitaStrumento(int i){
-        return strumenti.get(i).getPrezzo() * quantita.get(i);
-    }
-    public float getTotale(){
+     public float getTotale(){
         float somma =0 ;
-        for(int i = 0; i < strumenti.size();i++)
-          somma += strumenti.get(i).getPrezzo() * quantita.get(i);
-
+        System.out.println("somma");
+        for(Map.Entry<Strumento, Integer> entry: strumentoQuantita.entrySet()) {
+            Strumento strumento = entry.getKey();
+            Integer quantita = entry.getValue();
+            somma += strumento.getPrezzo() * quantita;
+        }
+        System.out.println("somma " + somma);
         return somma;
     }
 
-    private List<Integer> quantita;
-    private List<Strumento> strumenti;
+    public List<Strumento> getStrumenti(){
+        return strumentoQuantita.keySet().stream().toList();
+
+    }
+
+
+    @Override
+    public String toString() {
+        return "Carrello{" +
+                "strumentoQuantita=" + strumentoQuantita +
+                '}';
+    }
+
+    private HashMap<Strumento, Integer> strumentoQuantita;
 
 }

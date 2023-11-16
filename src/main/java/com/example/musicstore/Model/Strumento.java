@@ -22,6 +22,8 @@ public class Strumento {
         this.idCategoria = idCategoria;
     }
 
+
+
     public int getIdStrumento() {
         return idStrumento;
     }
@@ -69,6 +71,8 @@ public class Strumento {
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }
+
+
 
     int idStrumento;
     String nomeStrumento, percorsoImmagini;

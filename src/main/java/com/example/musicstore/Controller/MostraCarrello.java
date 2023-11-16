@@ -13,41 +13,37 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/MostraCarrello")
 public class MostraCarrello extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session;
-
-        try {
-            session = req.getSession(false);
-        } catch (Exception e) {
+        HttpSession session = req.getSession(false);
+        if(session == null)
             session = req.getSession(true);
-        }
 
         Carrello carrello = (Carrello) session.getAttribute("carrello");
-        List<Integer> strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
-
         if (carrello == null) {
             session.setAttribute("carrello", new Carrello());
             carrello = (Carrello) session.getAttribute("carrello");
         }
-        if (strumentoList == null) {
-            session.setAttribute("listaStrumenti", new ArrayList<Integer>());
-            strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
-        }
 
+        /*
         boolean b = false;
         for (int j = 0;j < strumentoList.size() ; j++) {
             System.out.println("ricerca per " + strumentoList.get(j));
             for(int i = 0 ; i <  carrello.getStrumenti().size() ;i++ ){
                 if(carrello.getStrumenti().get(i).getIdStrumento() == strumentoList.get(j)) {
                     b = true;
+
                     System.out.println(carrello.getStrumenti().get(i).getIdStrumento() + " già presente");
                 }
             }
+
+            System.out.println(Arrays.toString(carrello.getStrumenti().toArray()));
+            System.out.println(Arrays.toString(carrello.getQuantita().toArray()));
             if(!b) {
                 System.out.println("query per :" + strumentoList.get(j));
                 Strumento newstrumento = new StrumentoDAO().doRetrieveById(strumentoList.get(j));
@@ -55,7 +51,7 @@ public class MostraCarrello extends HttpServlet {
             }
             System.out.println("rimetto la b a false");
             b = false;
-        }
+        }*/
 
 
 

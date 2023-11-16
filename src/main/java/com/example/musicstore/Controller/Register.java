@@ -55,7 +55,7 @@ public class Register extends HttpServlet {
         if(email.length() <= 0) return null;
         if(password.length() <= 0) return null;
 
-        if(!utenteDAO.doRetrieveByEmail(email))return null;
+        if(utenteDAO.doRetrieveByEmail(email) == null)return null;
 
         return new Utente(email, password, nome, cognome, "Utente", gregorianCalendar, via, citta, nazione) ;
     }

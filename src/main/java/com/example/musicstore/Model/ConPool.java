@@ -18,7 +18,7 @@ public class ConPool {
 
 		if (datasource == null) {
 			PoolProperties p = new PoolProperties();
-			p.setUrl("jdbc:mysql://localhost:3306/ModelloMvc?serverTimezone=" + TimeZone.getDefault().getID());
+			p.setUrl("jdbc:mysql://localhost:3306/musicstoredb?serverTimezone=" + TimeZone.getDefault().getID());
 			p.setDriverClassName("com.mysql.cj.jdbc.Driver");
 			p.setUsername("root");
 			p.setPassword("Galletta$1234");

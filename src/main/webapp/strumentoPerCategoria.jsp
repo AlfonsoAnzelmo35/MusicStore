@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="css/ListaCategoria.css">
     <link rel="stylesheet" href="css/prodottiInEvidenza.css">
+    <link rel="stylesheet" href="css/stumentoPerCategoria.css">
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -18,8 +19,9 @@
 <div class="div_prodottiInEvidenza ">
     <div class="listaCategoria">
         <c:forEach var="strumento" items="${strumentoListPerCategoria}">
+
             <div class="strumentoInEvidenza">
-                <img src="${strumento.percorsoImmagini}"/>Para
+                <img src="${strumento.percorsoImmagini}"/>
                 <h3>${strumento.nomeStrumento}</h3>
                 <h3>${strumento.prezzo}</h3>
 
@@ -39,6 +41,8 @@
 
                         </form>
                     </div>
+                    //solo se è l'amministratore
+                    <a id="rimuoviArticolo" href="#"> 🗑️</a>
                 </div>
 
             </div>

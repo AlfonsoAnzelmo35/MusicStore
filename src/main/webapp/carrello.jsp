@@ -32,7 +32,7 @@
     </div>
 
     <c:choose>
-        <c:when test="${carrello.strumenti.isEmpty()}">
+        <c:when test="${carrello.getStrumenti().isEmpty()}">
             <p><b>carrello vuoto è vuoto</b></p>
             <p>Per aggiungere articoli al carrello naviga sul sito, quando trovi l'articolo che ti interessa, clicca su
                 "Aggiungi".<br/>
@@ -43,14 +43,14 @@
             <div class="contenitore-carrello">
                 <table >
                     <tr><th></th><th>ARTICOLO</th><th>QUANTITÀ </th><th>PREZZO</th><th>TOTALE</th><th></th></tr>
-                    <c:forEach var="strumento" items="${carrello.strumenti}" varStatus="loop">
+                    <c:forEach var="strumento" items="${carrello.getStrumenti()}" varStatus="loop">
                     <tr>
                         <td class="immagineCarrello"><img src="${strumento.percorsoImmagini}"/></td>
                         <td class="nomeImmagineCarrello">${strumento.nomeStrumento}</td>
-                        <td class="quantitaCarrello">${carrello.quantita[loop.index]}</td>
+                        <td class="quantitaCarrello">${carrello.getQuantitaStrumento(strumento.idStrumento)}</td>
                         <td class="prezzoCarrello">${strumento.prezzo} €</td>
                         <td class="totaleCarrello">
-                            <fmt:formatNumber type="number"  value="${carrello.getPrezzoPerQuantitaStrumento(loop.index) }" maxFractionDigits="2"/>
+                            <fmt:formatNumber type="number"  value="${carrello.getPrezzoPerQuantitaStrumento(strumento.idStrumento) }" maxFractionDigits="2"/>
                         </td>
                         <td class="deleteItemCarrello"><span onclick="apriModal(${strumento.idStrumento}, ${loop.index})" class="material-symbols-outlined">delete</span></td>
                     </tr>

@@ -11,17 +11,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/index.jsp")
+
+@WebServlet(loadOnStartup = 1)
 public class PrimaPagina extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void init() throws ServletException {
+        super.init();
         CategoriaDAO categoriaDAO = new CategoriaDAO();
         List<Categoria> categoriaList = categoriaDAO.doRetrieveAll();
         StrumentoDAO strumentoDAO = new StrumentoDAO();
@@ -32,16 +32,20 @@ public class PrimaPagina extends HttpServlet {
         servletContext.setAttribute("listaCategorie",categoriaList);
         servletContext.setAttribute("strumentoList",strumentoList);
 
-
         getServletContext().setAttribute("listaCategorie",categoriaList);
-        //mette nella request la lista categoriaPrincipali e sottoCategorie
-        creaListe(req,categoriaList);
+
+        creaListe(categoriaList);
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("home.jsp");
         requestDispatcher.forward(req, resp);
     }
 
-    public void creaListe(HttpServletRequest request, List<Categoria> categoriaLista){
+    public void creaListe(List<Categoria> categoriaLista){
 
         List<List<Categoria>> sottoCategorie = new ArrayList<>();
         List<Categoria> categoriePrincipali = new ArrayList<>();
@@ -65,7 +69,7 @@ public class PrimaPagina extends HttpServlet {
             }
         }
 
-       getServletContext().setAttribute("categoriePrincipali", categoriePrincipali);
+        getServletContext().setAttribute("categoriePrincipali", categoriePrincipali);
         getServletContext().setAttribute("sottoCategorie", sottoCategorie);
     }
 

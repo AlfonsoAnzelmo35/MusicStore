@@ -24,7 +24,7 @@ public class RimuoviStrumentoCarrello extends HttpServlet {
         HttpSession session ;
         List<Integer> strumentoList ;
         Carrello carrello ;
-
+/*
         try{
             session = req.getSession(false) ;
         }catch (Exception e){
@@ -48,5 +48,5 @@ public class RimuoviStrumentoCarrello extends HttpServlet {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("carrello.jsp") ;
         requestDispatcher.forward(req, resp);
-    }
+   */ }
 }

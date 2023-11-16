@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-    ${exception}
+    <%--${exception}--%>
     <h2>siamo dispiaciuti, c'è stato un errore </h2>
 </body>
 </html>

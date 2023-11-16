@@ -17,41 +17,32 @@
 
     <div class="div_prodottiInEvidenza ">
         <h1>prodotti in evidenza</h1>
-
         <div class="listaCategoria">
-
             <c:forEach var = "strumento" items="${strumentoList}">
+
                 <div class="strumentoInEvidenza">
                     <img src = "${strumento.percorsoImmagini}"/>
                     <h3>${strumento.nomeStrumento}</h3>
                     <h3>${strumento.prezzo}</h3>
-
-                    <div >
+                    <div>
                         <div class="contenitore-quantita">
 
                                 <form action="AggiungiStrumentoCarrello" id="form">
                                     <input type="hidden" value="${strumento.idStrumento}" name="idStrumento">
-                                    <input type="text" list="list_quantita" name="list_quantita" value="1" />
+                                    <input type="text" list="list_quantita" name="list_quantita" value="1"/>
                                     <datalist id="list_quantita">
                                         <option>2</option>
                                         <option>5</option>
                                         <option>10</option>
                                     </datalist>
-                                    <span onclick="invio()">
-                                        <span class="material-symbols-outlined">
-                                            shopping_cart
-                                        </span>
-                                        <b>Aggiungi</b>
-                                    </span>
+                                    <input type="submit" value="🛒">
                                 </form>
-
-
 
                         </div>
 
-
                     </div>
                 </div>
+
             </c:forEach>
         </div>
     </div>

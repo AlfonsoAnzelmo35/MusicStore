@@ -23,12 +23,21 @@ public class Login extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         UtenteDAO utenteDAO = new UtenteDAO();
-        if(utenteDAO.doRetrieveByLogin(email, password) == null)
+        Utente utente = utenteDAO.doRetrieveByLogin(email, password);
+        if(utente == null)
             req.getRequestDispatcher("WEB-INF/errore.jsp").forward(req,resp);
 
-        req.getSession(true) ;
+        HttpSession session = req.getSession(false) ;
+        if(session == null){
+            session = req.getSession(true) ;
+        }
+        //salva nella sessione se l'utente e' loggato oppure no, e la sua e-mail
+        session.setAttribute("logged", true);
+        session.setAttribute("utenteCF", utente.getCF()) ;
+        req.setAttribute("appenaLoggato", true); //solo per il messaggio di notifica
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
+
     public boolean validazione(HttpServletRequest req) {
 
         String email = req.getParameter("email");

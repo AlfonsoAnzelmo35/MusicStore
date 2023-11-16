@@ -1,5 +1,3 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Arrays" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -29,12 +27,21 @@
             </div>
         </div>
         <div class="links">
-            <a href="login.jsp">
-                    <span class="material-symbols-outlined">
-                    person
-                    </span>
-                <span id="accedi-registrati">Accedi/Registrati</span>
-            </a>
+
+            <c:choose>
+                <c:when test="${logged}">
+                    <a href="areaUtente.jsp" id="area-utente-span" >area Utente</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="login.jsp">
+                            <span class="material-symbols-outlined">
+                            person
+                            </span>
+                        <span id="accedi-registrati">Accedi/Registrati</span>
+                    </a>
+                </c:otherwise>
+            </c:choose>
+
             <a href="MostraCarrello">
                     <span class="material-symbols-outlined">
                     shopping_cart

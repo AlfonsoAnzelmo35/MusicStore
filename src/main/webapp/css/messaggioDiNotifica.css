@@ -1,0 +1,24 @@
+.messaggio_di_notifica{
+    text-align: center;
+    background-color: #22292C;
+    position: absolute;
+    top:-30px;
+    width: 100%;
+    animation-name: animazione;
+    animation-iteration-count: 1;
+    animation-duration: 4s;
+    color: white;
+    animation-fill-mode: forwards ;
+}
+
+@keyframes animazione {
+
+    50%{
+        top: 0;
+
+    }
+    100%{
+        top: -30px;
+        display: none;
+    }
+}

@@ -2,6 +2,7 @@ package com.example.musicstore.Controller;
 
 import com.example.musicstore.Model.Carrello;
 import com.example.musicstore.Model.Strumento;
+import com.example.musicstore.Model.StrumentoDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,44 +22,36 @@ public class AggiungiStrumentoCarrello extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Integer id = Integer.parseInt(req.getParameter("idStrumento")) ;
-        System.out.println("id " + id);
+        System.out.println("id dello strumento da aggiungere al carrello : "+ id);
         Integer quantita = Integer.parseInt(req.getParameter("list_quantita")) ;
+        if(quantita <= 0) {
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp");
+            requestDispatcher.forward(req, resp);
+        }
 
-        HttpSession session ;
-        List<Integer> strumentoList;
-        Carrello carrello;
-        try{
-            session = req.getSession(false) ;
-        }catch (Exception e){
+        StrumentoDAO strumentoDAO = new StrumentoDAO() ;
+
+        HttpSession session = req.getSession(false) ;
+        if(session == null)
             session = req.getSession(true) ;
-        }
 
-        strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
+        Carrello carrello;
         carrello =  (Carrello) session.getAttribute("carrello");
-
-        if(strumentoList == null) {
-            session.setAttribute("listaStrumenti", new ArrayList<Integer>());
-            strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
-        }
         if(carrello == null) {
             session.setAttribute("carrello", new Carrello());
             carrello = (Carrello) session.getAttribute("carrello");
         }
 
-        //per il momento tieni solo una lista di interi(gli id dei strumenti) poi solo quando l'utente
-        //vuole effettivamente guaradare il carrello allora effettuiamo le query
-        strumentoList.add(id);
-        carrello.getQuantita().add(quantita) ;
+        Strumento strumento = strumentoDAO.doRetrieveById(id);
+        carrello.aggiungiStrumento(strumento, quantita) ;
+
+        System.out.println(carrello);
 
         String addr= "" ;
         if(req.getParameter("nomePagina") != null)
             addr = "strumentoPerCategoria.jsp";
         else addr = "home.jsp";
 
-        System.out.println(Arrays.toString(strumentoList.toArray()));
-        for(Strumento strumento : carrello.getStrumenti()){
-            System.out.println(strumento.getNomeStrumento());
-        }
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(addr) ;
         requestDispatcher.forward(req, resp);
