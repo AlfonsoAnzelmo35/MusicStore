@@ -27,7 +27,6 @@ public class PrimaPagina extends HttpServlet {
         StrumentoDAO strumentoDAO = new StrumentoDAO();
         List<Strumento> strumentoList = strumentoDAO.doGetMaggiorQuantitaAcquistate();
 
-
         ServletContext servletContext = getServletContext();
         servletContext.setAttribute("listaCategorie",categoriaList);
         servletContext.setAttribute("strumentoList",strumentoList);

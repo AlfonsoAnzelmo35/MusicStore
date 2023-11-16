@@ -41,8 +41,9 @@
 
                         </form>
                     </div>
-                    //solo se è l'amministratore
-                    <a id="rimuoviArticolo" href="#"> 🗑️</a>
+                    <c:if test="${ruolo.equals('Amministratore')}">
+                        <a id="rimuoviArticolo" href="RimuoviArticolo?idStrumento=${strumento.idStrumento}"> 🗑️</a>
+                    </c:if>
                 </div>
 
             </div>

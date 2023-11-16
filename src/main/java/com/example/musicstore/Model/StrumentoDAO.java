@@ -117,4 +117,20 @@ public class StrumentoDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public int deleteById(Integer idStrumento) {
+
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM musicstoredb.strumento s WHERE s.IDSTRUMENTO = ? ");
+
+            ps.setInt(1, idStrumento);
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }

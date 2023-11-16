@@ -31,9 +31,11 @@ public class Login extends HttpServlet {
         if(session == null){
             session = req.getSession(true) ;
         }
-        //salva nella sessione se l'utente e' loggato oppure no, e la sua e-mail
+        //salva nella sessione se l'utente e' loggato oppure no, la sua e-mail e il suo ruolo
         session.setAttribute("logged", true);
         session.setAttribute("utenteCF", utente.getCF()) ;
+        session.setAttribute("ruolo", utente.getRuolo());
+
         req.setAttribute("appenaLoggato", true); //solo per il messaggio di notifica
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
