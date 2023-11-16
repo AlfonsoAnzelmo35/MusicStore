@@ -51,7 +51,7 @@
             </div>
             <div class="card">
                 <div class="card_image">
-                    <img src="images/areaUtente/dollaro.png" alt="sicurezza"/>
+                    <img src="images/areaUtente/dollaro.png" alt="piano Prime"/>
                 </div>
                 <div class="card_info">
                     <h3 class="titolo_card"> Prime</h3>
@@ -65,6 +65,17 @@
                 <div class="card_info">
                     <h3 class="titolo_card"> Indirizzi</h3>
                     <p class="descrizione_card"> Modifica gli indizzi e le informazioni personali</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_image">
+                    <img src="images/areaUtente/logout.webp" alt="logout"/>
+                </div>
+                <div class="card_info">
+                    <a href="Logout" >
+                        <h3 class="titolo_card"> Log out</h3>
+                        <p class="descrizione_card"> Disconnettiti </p>
+                    </a>
                 </div>
             </div>
         </div>
