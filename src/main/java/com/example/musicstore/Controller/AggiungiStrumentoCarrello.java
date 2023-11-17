@@ -22,11 +22,21 @@ public class AggiungiStrumentoCarrello extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Integer id = Integer.parseInt(req.getParameter("idStrumento")) ;
-        System.out.println("id dello strumento da aggiungere al carrello : "+ id);
-        Integer quantita = Integer.parseInt(req.getParameter("list_quantita")) ;
-        if(quantita <= 0) {
+        Integer quantita ;
+        try{
+            quantita = Integer.parseInt(req.getParameter("list_quantita")) ;
+            if(quantita <= 0) {
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp");
+                req.setAttribute("errore","quantita negativa");
+                requestDispatcher.forward(req, resp);
+                return ;
+            }
+
+        }catch (NumberFormatException e){
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp");
+            req.setAttribute("errore","inserisci un numero");
             requestDispatcher.forward(req, resp);
+            return ;
         }
 
         StrumentoDAO strumentoDAO = new StrumentoDAO() ;

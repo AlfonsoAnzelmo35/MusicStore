@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>header</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header.css">
     </head>
 <body >
@@ -46,7 +46,7 @@
                     <span class="material-symbols-outlined">
                     shopping_cart
                     </span>
-                <span id="totaleCarrello">0,00</span>
+                <span id="totaleCarrello">${carrello.getTotale()} €</span>
             </a>
 
         </div>

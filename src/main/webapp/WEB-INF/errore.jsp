@@ -10,9 +10,11 @@
 <html>
 <head>
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <%--${exception}--%>
     <h2>siamo dispiaciuti, c'è stato un errore </h2>
+    errore : ${errore}
+    <a href="${pageContext.request.getContextPath()}/home.jsp"> torna alla home</a>
 </body>
 </html>

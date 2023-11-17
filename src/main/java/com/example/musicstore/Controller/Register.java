@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.GregorianCalendar;
@@ -18,12 +19,10 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Utente utente ;
-
-        if((utente = validazione(req)) == null)
+        if((utente = validazione(req)) != null)
+            utenteDAO.doSave(utente);
+        else
             req.getRequestDispatcher("WEB-INF/errore.jsp").forward(req,resp);
-
-
-        utenteDAO.doSave(utente);
 
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
@@ -45,8 +44,8 @@ public class Register extends HttpServlet {
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if (nome.length() <= 0) return null;
 
+        if (nome.length() <= 0) return null;
         if (cognome.length() <= 0) return null;
         if (dataNascita.length() <= 0) return null;
         if(via.length() <= 0) return null;
@@ -55,9 +54,10 @@ public class Register extends HttpServlet {
         if(email.length() <= 0) return null;
         if(password.length() <= 0) return null;
 
-        if(utenteDAO.doRetrieveByEmail(email) == null)return null;
+        if(utenteDAO.doRetrieveByEmail(email) != null)return null;
+        Utente u = new Utente(email, password, nome, cognome, "Utente", gregorianCalendar, via, citta, nazione) ;
 
-        return new Utente(email, password, nome, cognome, "Utente", gregorianCalendar, via, citta, nazione) ;
+        return u ;
     }
 
     @Override

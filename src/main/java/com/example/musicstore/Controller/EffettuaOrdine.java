@@ -21,30 +21,22 @@ public class EffettuaOrdine extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession(false) ;
-        if(session == null){
-            req.getSession(true) ;
-        }
-
-        if(!(boolean)session.getAttribute("logged")){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp") ;
+        if(session == null || session.getAttribute("logged") == null){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/erroreNonAccesso.jsp") ;
             requestDispatcher.forward(req, resp);
         }
 
         Carrello carrello;
         carrello =  (Carrello) session.getAttribute("carrello") ;
         if(carrello == null) {
-            session.setAttribute("carrello", new Carrello());
-            carrello = (Carrello) session.getAttribute("carrello");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp") ;
+            requestDispatcher.forward(req, resp);
         }
 
-        UtenteDAO utenteDAO = new UtenteDAO();
         OrdiniDAO ordiniDAO = new OrdiniDAO() ;
-
-
-        String utenteEmail = (String)session.getAttribute("utenteEmail") ;
         int utenteCF = (int)session.getAttribute("utenteCF") ;
 
-        //per ogni ordine viene salvata una tupla
+
         for(Strumento strumento: carrello.getStrumenti()) {
             Ordini ordine = new Ordini(utenteCF, strumento.getIdStrumento(), carrello.getPrezzoPerQuantitaStrumento(strumento.getIdStrumento()),
                     strumento.getOfferta(), carrello.getQuantitaStrumento(strumento.getIdStrumento()), new GregorianCalendar());
