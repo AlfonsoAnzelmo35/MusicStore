@@ -21,6 +21,8 @@ public class Logout extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/errore.jsp").forward(req,resp) ;
 
         session.invalidate();
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
+
     }
 
     @Override

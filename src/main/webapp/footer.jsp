@@ -17,34 +17,31 @@
         <div class="footer-block">
             <h3>CHI SIAMO</h3>
             <ul>
-                <li><a href="#">Storia</a> </li>
+                <li><a href="footerPages/Storia.jsp">Storia</a> </li>
                 <li><a href="#">Contattaci</a> </li>
             </ul>
             Music store
             <p>
                 Via Mergellina 52<br/>
                 +39 1112223334321<br/>
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-youtube"></i>
-                <i class="fa-brands fa-instagram"></i>
+                <a href="https://it-it.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.youtube.com/"> <i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/"> <i class="fa-brands fa-instagram"></i></a>
             </p>
         </div>
         <div class="footer-block">
             <h3>CHI SIAMO</h3>
             <ul>
-                <li><a href="#">Metodi di pagamento</a> </li>
-                <li><a href="#">Modalità di spedizione</a> </li>
-                <li><a href="#">Garanzia</a> </li>
-                <li><a href="#">Diritto di recesso</a> </li>
-                <li><a href="#">Privacy</a> </li>
+                <li><a href="../footerPages/MetodoPagamento.jsp">Metodi di pagamento</a> </li>
+                <li><a href="../footerPages/Privacy.jsp">Privacy</a> </li>
             </ul>
 
         </div>
         <div class="footer-block">
             <h4>SUPPORTO VENDITA</h4>
             <ul>
-                <li><a href="#">Pagamenti rateali</a> </li>
-                <li><a href="#">Carta del docente</a> </li>
+                <li><a href="../footerPages/PagamentiRateali.jsp">Pagamenti rateali</a> </li>
+                <li><a href="../footerPages/CartaDelDocente.jsp">Carta del docente</a> </li>
             </ul>
         </div>
     </div>

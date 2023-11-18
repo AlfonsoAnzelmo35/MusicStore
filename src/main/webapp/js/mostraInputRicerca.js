@@ -1,6 +1,5 @@
 var spanRicerca = document.querySelector(".header div:nth-child(2) span"); //la lente
 var inputRicerca = document.querySelector(".header div:nth-child(2) input");
-var risultatoRicerca = document.querySelector(".risultatoRicerca") ;
 var inputRicercaOldStyle = inputRicerca.style;
 
 spanRicerca.addEventListener("click",()=>{
@@ -17,4 +16,10 @@ window.addEventListener("resize",()=>{
         inputRicerca.style = inputRicercaOldStyle ;
 
     }
+    if(window.innerWidth < 810) {
+        inputRicerca.style.display = "none"  ;
+
+    }
 })
+
+

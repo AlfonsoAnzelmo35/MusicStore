@@ -43,6 +43,7 @@ public class EffettuaOrdine extends HttpServlet {
 
             ordiniDAO.doSave(ordine);
         }
+        carrello.rimuoviTuttiGliStrumenti();
 
         req.setAttribute("ordineEffetuato",true); //solo per la notifica
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("home.jsp") ;

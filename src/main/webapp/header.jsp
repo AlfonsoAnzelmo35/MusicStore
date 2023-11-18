@@ -11,7 +11,7 @@
 <div class="contenitore-header">
     <div class="header">
         <div class="site-name">
-            <span><a href="home.jsp"> MusicStrore</a></span>
+            <span><a href="home.jsp"> MusicStore</a></span>
         </div>
         <div>
             <div class="div_ricerca">

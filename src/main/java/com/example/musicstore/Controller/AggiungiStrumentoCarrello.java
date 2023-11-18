@@ -21,9 +21,10 @@ public class AggiungiStrumentoCarrello extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Integer id = Integer.parseInt(req.getParameter("idStrumento")) ;
+        Integer id ;
         Integer quantita ;
         try{
+            id = Integer.parseInt(req.getParameter("idStrumento")) ;
             quantita = Integer.parseInt(req.getParameter("list_quantita")) ;
             if(quantita <= 0) {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp");
@@ -31,15 +32,12 @@ public class AggiungiStrumentoCarrello extends HttpServlet {
                 requestDispatcher.forward(req, resp);
                 return ;
             }
-
         }catch (NumberFormatException e){
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp");
             req.setAttribute("errore","inserisci un numero");
             requestDispatcher.forward(req, resp);
             return ;
         }
-
-        StrumentoDAO strumentoDAO = new StrumentoDAO() ;
 
         HttpSession session = req.getSession(false) ;
         if(session == null)
@@ -52,8 +50,15 @@ public class AggiungiStrumentoCarrello extends HttpServlet {
             carrello = (Carrello) session.getAttribute("carrello");
         }
 
+        StrumentoDAO strumentoDAO = new StrumentoDAO() ;
         Strumento strumento = strumentoDAO.doRetrieveById(id);
-        carrello.aggiungiStrumento(strumento, quantita) ;
+
+        if(!strumentoPresente(carrello, strumento)){
+            carrello.aggiungiStrumento(strumento, quantita) ;
+        }else{
+            System.out.println("era gia presente");
+            carrello.aggiornaQuantitaStrumento(strumento.getIdStrumento(), quantita) ;
+        }
 
         System.out.println(carrello);
 
@@ -70,5 +75,13 @@ public class AggiungiStrumentoCarrello extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req,resp);
+    }
+
+    public boolean strumentoPresente(Carrello carrello, Strumento strumento){
+        for (Strumento str :carrello.getStrumenti()){
+            if(str.getIdStrumento() == strumento.getIdStrumento())
+                return true;
+        }
+        return false ;
     }
 }

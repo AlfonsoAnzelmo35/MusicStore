@@ -21,6 +21,15 @@ public class Carrello {
         return 0;
 
     }
+
+    public void aggiornaQuantitaStrumento(int idStrumento, int newQuantita){
+        Optional<Strumento> strumentoOPT = getStrumento(idStrumento) ;
+        Strumento strumento = strumentoOPT.get() ;
+        int oldQuantita = strumentoQuantita.get(strumento) ;
+        strumentoQuantita.replace(strumento, oldQuantita + newQuantita) ;
+    }
+
+
     public Integer getQuantitaStrumento(Integer id){
         Optional<Strumento> strumentoOPT = getStrumento(id);
 
@@ -40,19 +49,30 @@ public class Carrello {
 
      public float getTotale(){
         float somma =0 ;
-        System.out.println("somma");
+
         for(Map.Entry<Strumento, Integer> entry: strumentoQuantita.entrySet()) {
             Strumento strumento = entry.getKey();
             Integer quantita = entry.getValue();
             somma += strumento.getPrezzo() * quantita;
         }
-        System.out.println("somma " + somma);
+
         return somma;
     }
 
     public List<Strumento> getStrumenti(){
         return strumentoQuantita.keySet().stream().toList();
 
+    }
+
+    public void rimuoviStrumento(int idStrumento){
+        Optional<Strumento> strumentoOPT = getStrumento(idStrumento) ;
+        if(strumentoOPT.isPresent()) {
+            strumentoQuantita.remove(strumentoOPT.get());
+        }
+    }
+
+    public void rimuoviTuttiGliStrumenti(){
+        strumentoQuantita.clear();
     }
 
 

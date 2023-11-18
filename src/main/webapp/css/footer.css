@@ -5,6 +5,7 @@
     display:flex;
     justify-content:space-between;
     background-color:#22292C;
+    color: white;
 }
 .footer ul li::marker{
     color:white;

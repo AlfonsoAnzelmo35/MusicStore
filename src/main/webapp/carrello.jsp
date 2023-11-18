@@ -52,7 +52,10 @@
                         <td class="totaleCarrello">
                             <fmt:formatNumber type="number"  value="${carrello.getPrezzoPerQuantitaStrumento(strumento.idStrumento) }" maxFractionDigits="2"/>
                         </td>
-                        <td class="deleteItemCarrello"><span onclick="apriModal(${strumento.idStrumento}, ${loop.index})" class="material-symbols-outlined">delete</span></td>
+                        <td class="deleteItemCarrello">
+                            <a href="RimuoviStrumentoCarrello?idStrumento=${strumento.idStrumento}">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
                     </tr>
 
 

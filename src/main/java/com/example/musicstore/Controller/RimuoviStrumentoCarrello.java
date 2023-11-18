@@ -19,34 +19,25 @@ import java.util.List;
 public class RimuoviStrumentoCarrello extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer id = Integer.parseInt(req.getParameter("idStrumento")) ;
-        int indiceQuantita = Integer.parseInt(req.getParameter("indiceQuantita")) ;
-        HttpSession session ;
-        List<Integer> strumentoList ;
-        Carrello carrello ;
-/*
+        Integer idStrumento = null ;
         try{
-            session = req.getSession(false) ;
-        }catch (Exception e){
-            session = req.getSession(true) ;
+            idStrumento = Integer.parseInt(req.getParameter("idStrumento")) ;
+        }catch (NumberFormatException e){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp") ;
+            requestDispatcher.forward(req, resp);
         }
 
-        strumentoList = (List<Integer>) session.getAttribute("listaStrumenti");
-        //se ha cliccato sul cestino il carrello è nella sessione!
-        carrello = (Carrello) session.getAttribute("carrello");
+        HttpSession session = req.getSession(false) ;
+        Carrello carrello =  (Carrello) session.getAttribute("carrello") ;
 
+        if(session == null || carrello == null){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/errore.jsp") ;
+            requestDispatcher.forward(req, resp);
+        }
 
-        Strumento strumento = new StrumentoDAO().doRetrieveById(id);
-        System.out.println(id);
-
-        for(int i = 0 ; i < carrello.getStrumenti().size() ; i++)
-            if(carrello.getStrumenti().get(i).getIdStrumento() == strumento.getIdStrumento())
-                carrello.getStrumenti().remove(i);
-
-        carrello.getQuantita().remove(indiceQuantita) ;
-        strumentoList.remove(id);
+        carrello.rimuoviStrumento(idStrumento);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("carrello.jsp") ;
         requestDispatcher.forward(req, resp);
-   */ }
+     }
 }
