@@ -47,7 +47,19 @@
                     <tr>
                         <td class="immagineCarrello"><img src="${strumento.percorsoImmagini}"/></td>
                         <td class="nomeImmagineCarrello">${strumento.nomeStrumento}</td>
-                        <td class="quantitaCarrello">${carrello.getQuantitaStrumento(strumento.idStrumento)}</td>
+
+                        <td class="quantitaCarrello">
+                            <input type="text"
+                                   list="list_quantita"
+                                   name="list_quantita"
+                                   value="${carrello.getQuantitaStrumento(strumento.idStrumento)}"/>
+                            <datalist id="list_quantita">
+                                <option>2</option>
+                                <option>5</option>
+                                <option>10</option>
+                            </datalist>
+
+                        </td>
                         <td class="prezzoCarrello">${strumento.prezzo} €</td>
                         <td class="totaleCarrello">
                             <fmt:formatNumber type="number"  value="${carrello.getPrezzoPerQuantitaStrumento(strumento.idStrumento) }" maxFractionDigits="2"/>

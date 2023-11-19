@@ -97,7 +97,7 @@ public class StrumentoDAO {
                             "FROM musicstoredb.strumento, musicstoredb.ordine, musicstoredb.utente " +
                             "WHERE strumento.IDSTRUMENTO = musicstoredb.ordine.STRUMENTO AND " +
                             "        UTENTE.CF = musicstoredb.ordine.UTENTE " +
-                            "ORDER BY musicstoredb.ordine.quantita DESC " +
+                            "GROUP BY musicstoredb.strumento.idstrumento " +
                             "LIMIT 9 ");
 
             ResultSet rs = ps.executeQuery();
@@ -109,6 +109,7 @@ public class StrumentoDAO {
                 strumento.setOfferta(rs.getFloat(4));
                 strumento.setIdCategoria(rs.getInt(5));
                 strumento.setPercorsoImmagini(rs.getString(6));
+
                 strumentoList.add(strumento);
             }
             return strumentoList;

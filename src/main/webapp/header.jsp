@@ -30,6 +30,7 @@
 
             <c:choose>
                 <c:when test="${logged}">
+
                     <a href="areaUtente.jsp" id="area-utente-span" >area Utente</a>
                 </c:when>
                 <c:otherwise>
@@ -63,8 +64,9 @@
                     <ul class="sottomenu-sottocategoria">
                         <c:forEach var="sottoCategoria" items="${sottoCategorie[loop.index]}" varStatus="loopInterno">
                             <li>
-                                <a href="MostraCategoria?idCategoria=${sottoCategoria.idCategoria}&nomeCategoria=${sottoCategoria.nomeCategoria}">
-                                        ${sottoCategoria.nomeCategoria}
+                                <a href="StrumentoPerCategoria?idCategoria=${sottoCategoria.idCategoria}">
+                                    <h2>${sottoCategoria.nomeCategoria}</h2>
+                                    <%--<img src="${sottoCategoria.percorso_immagine}"/>--%>
                                 </a>
                             </li>
                         </c:forEach>

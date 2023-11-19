@@ -11,7 +11,7 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 
-  <title>register</title>
+  <title>Music Store - Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="css/register-login.css">
@@ -23,15 +23,13 @@
 <div class="contenitore-flex">
   <%@ include file="CategorieMenu.jsp"%>
 
-
-
   <div class="register-login">
     <div class="errore">
       <h3>Si è verificato un errore</h3>
       <p></p>
     </div>
 
-    <form action="Register" name="formName" method="post" onsubmit="return validazione()">
+    <form action="Register" name="formName" method="post" onsubmit="return validazioneModficaDati()">
 
       <table>
         <tr>

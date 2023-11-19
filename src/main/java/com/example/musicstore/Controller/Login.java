@@ -31,10 +31,16 @@ public class Login extends HttpServlet {
         if(session == null){
             session = req.getSession(true) ;
         }
-        //salva nella sessione se l'utente e' loggato oppure no, la sua e-mail e il suo ruolo
+
         session.setAttribute("logged", true);
         session.setAttribute("utenteCF", utente.getCF()) ;
-        session.setAttribute("ruolo", utente.getRuolo());
+        session.setAttribute("ruolo", utente.getRuolo()) ;
+        session.setAttribute("cognomeUtente", utente.getCognome()) ;
+        session.setAttribute("emailUtente",utente.getEmail());
+        session.setAttribute("nomeUtente",utente.getNome());
+        session.setAttribute("indirizzoUtente", utente.getVia()); //per modifica info personali
+        session.setAttribute("passwordUtente",utente.getPassword());      //per modifica info personali
+        session.setAttribute("cognomeUtente",utente.getCognome());      //per modifica info personali
 
         req.setAttribute("appenaLoggato", true); //solo per il messaggio di notifica
         req.getRequestDispatcher("home.jsp").forward(req, resp);

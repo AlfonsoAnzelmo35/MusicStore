@@ -39,11 +39,17 @@ li.principale a{
     padding-left: 20px;
     text-decoration:none;
 }
+
+#range-prezzo,.range-slider{
+    padding-left: 20px;
+}
 @media screen and (max-width: 900px) {/*se la larghezza della schermo e' minore di 480px*/
     .menu-categoria{
         width:100%;
     }
-
+    #range-prezzo,.range-slider{
+        display: none;
+    }
 
     li.principale{
         text-align:center;

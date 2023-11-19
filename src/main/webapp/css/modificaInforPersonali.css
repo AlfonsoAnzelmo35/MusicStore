@@ -1,0 +1,36 @@
+.contenitore-modificaInfoPersonali{
+    margin: 40px 0;
+}
+.contenitore-modificaInfoPersonali table{
+    margin:auto;
+    border:1px solid rgb(0,0,0,0.2);
+    border-radius:10px;
+}
+
+
+.contenitore-modificaInfoPersonali table h4{
+    margin:0;
+}
+.contenitore-modificaInfoPersonali table td{
+    height:70px;
+
+}
+
+.contenitore-modificaInfoPersonali table td:first-child{
+    padding-left:20px;
+    width:300px;
+}
+.contenitore-modificaInfoPersonali table td:last-child{
+    padding-right:20px;
+
+}
+
+#effettuaModifiche{
+    border:unset;
+    cursor:pointer;
+    padding:10px;
+    font-weight:bold;
+    color:white;
+    font-size:20px;
+    background:#EAAA45;
+}

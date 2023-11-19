@@ -28,6 +28,14 @@ public class Utente {
         this.nazione = nazione;
     }
 
+    public Utente(String email, String password, String nome, String cognome, String via) {
+        this.email = email;
+        this.password = password;
+        this.Nome = nome ;
+        this.Cognome = cognome ;
+        this.via = via ;
+    }
+
     public int getCF() {
         return CF;
     }
@@ -108,6 +116,22 @@ public class Utente {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "CF=" + CF +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", Nome='" + Nome + '\'' +
+                ", Cognome='" + Cognome + '\'' +
+                ", Ruolo='" + Ruolo + '\'' +
+                ", DataNascita=" + DataNascita +
+                ", via='" + via + '\'' +
+                ", citta='" + citta + '\'' +
+                ", nazione='" + nazione + '\'' +
+                '}';
     }
 
     private int CF;

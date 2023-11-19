@@ -17,13 +17,18 @@
 
 
 <div class="div_prodottiInEvidenza ">
+    <p id ="range-prezzo">prezzo 50 € </p>
+    <input type="range" min="1" max="10000" value="50" class="range-slider">
+
     <div class="listaCategoria">
+
+
         <c:forEach var="strumento" items="${strumentoListPerCategoria}">
 
             <div class="strumentoInEvidenza">
                 <img src="${strumento.percorsoImmagini}"/>
-                <h3>${strumento.nomeStrumento}</h3>
-                <h3>${strumento.prezzo}</h3>
+                <h3>${strumento.nomeStrumento.substring(0, strumento.nomeStrumento.length() - 4)}</h3>
+                <h3>${strumento.prezzo} €</h3>
 
                 <div>
                     <div class="contenitore-quantita">
@@ -53,6 +58,7 @@
 </div>
 
 <script src="js/carrello.js"></script>
+<script src="js/range_prezzo.js"></script>
 <%@ include file="footer.jsp"%>
 
 </body>

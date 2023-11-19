@@ -2,7 +2,7 @@
 $(document).ready(()=>{
     $("#nazione").click(()=>{
         $.get("nations.xml", (data, status)=>{
-            var x = data.getElementsByTagName("nazione");
+            var x = data.getElementsByTagName("nazione"); //XML
             console.log(x)
             $(x).each((indice)=>{
                 var $option = $("<option>"); //crea un elemento, best-practice dichiarare una variabile jquery con il $

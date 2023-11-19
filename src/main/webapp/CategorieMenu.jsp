@@ -35,7 +35,10 @@
             </ul>
 
         </c:forEach>
+        <p id ="range-prezzo">prezzo 50 € </p>
+        <input type="range" min="1" max="10000" value="50" class="range-slider">
     </ul>
+
 </div>
 
     <script src="js/show-hide-categorie.js"></script>

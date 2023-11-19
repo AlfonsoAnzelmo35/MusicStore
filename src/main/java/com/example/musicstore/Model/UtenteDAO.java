@@ -43,7 +43,7 @@ public class UtenteDAO {
     public Utente doRetrieveByLogin(String email, String password) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT CF, Nome, Cognome, Ruolo, DataNascita, via, citta, nazione" +
+                    con.prepareStatement("SELECT CF, Nome, Cognome, Ruolo, DataNascita, via, citta, nazione,email" +
                             "  FROM musicstoredb.UTENTE u  " +
                             " WHERE u.email=? AND u.password=?");
 
@@ -66,7 +66,7 @@ public class UtenteDAO {
                 utente.setVia(rs.getString(6));
                 utente.setCitta(rs.getString(7));
                 utente.setNazione(rs.getString(8));
-
+                utente.setEmail(rs.getString(9));
                 return utente;
             }
             return null;
@@ -107,6 +107,29 @@ public class UtenteDAO {
             return null;
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void doUpdate(Utente utente, int idUtente) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    " UPDATE musicstoredb.UTENTE "+
+                            " SET Nome = ?, Cognome = ? , via = ? ,email = ?, password = ? " +
+                            "  WHERE CF=? ");
+
+            ps.setString(1, utente.getNome());
+            ps.setString(2, utente.getCognome());
+            ps.setString(3, utente.getVia());
+            ps.setString(4, utente.getEmail());
+            ps.setString(5, utente.getPassword());
+            ps.setInt(6, idUtente);
+
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+
+
+        }catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

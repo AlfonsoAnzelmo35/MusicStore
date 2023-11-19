@@ -7,6 +7,9 @@
     background-color:#22292C;
     color: white;
 }
+.footer ul{
+    padding:0;
+}
 .footer ul li::marker{
     color:white;
 }

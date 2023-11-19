@@ -91,6 +91,15 @@
     font-size:20px;
     background:#EAAA45;
 }
+.quantitaCarrello input{
+    width: 80px;
+    color: #A5897C;
+    border: 2px solid #A5897C;
+    height: 34px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 20px;
+}
 
 @media screen and (max-width: 800px) {
     .contenitore-carrello ,.contenitore-carrello table {

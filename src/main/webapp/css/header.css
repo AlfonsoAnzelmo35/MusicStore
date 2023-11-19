@@ -166,7 +166,10 @@ ul.sottomenu-sottocategoria li:hover{
     background:#836E64;
     padding-bottom:80px;
 }
+.sottomenu-sottocategoria li h2{
+    font-size:18px;
 
+}
 @media screen and (max-width: 852px) {/*se la larghezza della schermo e' minore di 480px*/
     .header div:nth-child(2) input{
         width:60%;

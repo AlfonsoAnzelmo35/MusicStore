@@ -22,8 +22,8 @@
 
                 <div class="strumentoInEvidenza">
                     <img src = "${strumento.percorsoImmagini}"/>
-                    <h3>${strumento.nomeStrumento}</h3>
-                    <h3>${strumento.prezzo}</h3>
+                    <h3>${strumento.nomeStrumento.substring(0, strumento.nomeStrumento.length() - 4)}</h3>
+                    <h3 id="prezzoStrumento">${strumento.prezzo} €</h3>
                     <div>
                         <div class="contenitore-quantita">
 

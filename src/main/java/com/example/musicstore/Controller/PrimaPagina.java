@@ -27,14 +27,14 @@ public class PrimaPagina extends HttpServlet {
         StrumentoDAO strumentoDAO = new StrumentoDAO();
         List<Strumento> strumentoList = strumentoDAO.doGetMaggiorQuantitaAcquistate();
 
+
+        //salva nel servlet context la lista categorie e i primi 9 strumenti raggruppati per quantità ordinati(in ordice decrescente)
         ServletContext servletContext = getServletContext();
         servletContext.setAttribute("listaCategorie",categoriaList);
         servletContext.setAttribute("strumentoList",strumentoList);
 
-        getServletContext().setAttribute("listaCategorie",categoriaList);
-
+        //salva nel servlet context le categorie principali e le relative sottocategorie
         creaListe(categoriaList);
-
     }
 
     @Override
